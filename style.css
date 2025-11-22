@@ -1,0 +1,460 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Times New Roman', Times, serif;
+    background-color: #f5f5f5;
+    padding: 20px;
+    font-size: 12px;
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.controls {
+    background: white;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    display: flex;
+    gap: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.btn {
+    padding: 10px 20px;
+    border: 1px solid #ccc;
+    background: white;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 14px;
+    transition: all 0.3s;
+}
+
+.btn:hover {
+    background: #f0f0f0;
+}
+
+.btn-primary {
+    background: #4CAF50;
+    color: white;
+    border-color: #4CAF50;
+}
+
+.btn-primary:hover {
+    background: #45a049;
+}
+
+.invoice {
+    background: white;
+    padding: 30px 40px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.header {
+    margin-bottom: 15px;
+}
+
+.header-row {
+    margin-bottom: 8px;
+    line-height: 28px;
+    font-size: 15px;
+}
+
+.header-row:first-child {
+    font-weight: bold;
+    font-size: 17px;
+}
+
+input[type="text"],
+input[type="number"] {
+    border: none;
+    border-bottom: 1px solid #000;
+    padding: 2px 5px;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 15px;
+    outline: none;
+}
+
+.inline-input {
+    width: 80px;
+    text-align: center;
+}
+
+.inline-input.small {
+    width: 40px;
+}
+
+.full-input {
+    width: calc(100% - 120px);
+}
+
+.invoice-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 15px 0;
+    font-size: 14px;
+}
+
+.invoice-table th,
+.invoice-table td {
+    border: 1px solid #000;
+    padding: 6px 5px;
+    text-align: center;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+.invoice-table th {
+    background: #f9f9f9;
+    font-weight: bold;
+}
+
+.invoice-table td input {
+    width: 100%;
+    border: none;
+    text-align: center;
+    padding: 4px;
+    font-size: 14px;
+    word-wrap: break-word;
+}
+
+.invoice-table td input.item-name {
+    text-align: left;
+    white-space: normal;
+    word-wrap: break-word;
+}
+
+.row-number {
+    width: 35px;
+    min-width: 35px;
+}
+
+.invoice-table th:nth-child(2),
+.invoice-table td:nth-child(2) {
+    width: 45%;
+    max-width: 250px;
+}
+
+.item-quantity,
+.item-price {
+    width: 10%;
+    min-width: 60px;
+}
+
+.item-sum {
+    width: 15%;
+    min-width: 80px;
+    font-weight: bold;
+}
+
+.btn-remove {
+    background: #f44336;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 3px;
+    font-size: 14px;
+}
+
+.btn-remove:hover {
+    background: #da190b;
+}
+
+.footer {
+    margin-top: 15px;
+}
+
+.totals {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    margin-bottom: 10px;
+}
+
+.total-row {
+    margin: 4px 0;
+    font-size: 15px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.total-row span {
+    font-weight: normal;
+}
+
+.total-row span:last-child {
+    font-weight: bold;
+    min-width: 100px;
+    text-align: right;
+}
+
+.summary {
+    border-top: 1px solid #000;
+    padding-top: 15px;
+    margin-top: 20px;
+}
+
+.summary-row {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin: 5px 0;
+    font-size: 13px;
+}
+
+.total-words {
+    flex: 1;
+    border-bottom: 1px solid #000;
+    min-height: 20px;
+}
+
+.signatures {
+    margin-top: 15px;
+}
+
+.signature-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.signature-input {
+    flex: 1;
+    max-width: 300px;
+}
+
+@media print {
+    body {
+        background: white;
+        padding: 0;
+        margin: 0;
+    }
+    
+    .no-print {
+        display: none !important;
+    }
+    
+    .invoice {
+        box-shadow: none;
+        padding: 15px 20px;
+        page-break-after: avoid;
+    }
+    
+    .invoice-table {
+        font-size: 10px;
+        page-break-inside: auto;
+    }
+    
+    .invoice-table tr {
+        page-break-inside: avoid;
+        page-break-after: auto;
+    }
+    
+    .invoice-table th,
+    .invoice-table td {
+        padding: 2px 3px;
+    }
+    
+    .invoice-table th:last-child,
+    .invoice-table td:last-child {
+        display: none;
+    }
+    
+    .header-row {
+        margin-bottom: 4px;
+        line-height: 18px;
+        font-size: 11px;
+    }
+    
+    .footer {
+        margin-top: 10px;
+    }
+}
+
+/* Стили для PDF экспорта */
+body.pdf-export .invoice {
+    padding: 10px 15px !important;
+    font-size: 13px !important;
+}
+
+body.pdf-export .header-row {
+    margin-bottom: 4px !important;
+    line-height: 20px !important;
+    font-size: 14px !important;
+}
+
+body.pdf-export .header-row:first-child {
+    font-size: 16px !important;
+    font-weight: bold !important;
+}
+
+body.pdf-export .invoice-table {
+    font-size: 12px !important;
+    margin: 8px 0 !important;
+}
+
+body.pdf-export .invoice-table th,
+body.pdf-export .invoice-table td {
+    padding: 3px 4px !important;
+    border: 1px solid #000 !important;
+    line-height: 1.3 !important;
+}
+
+body.pdf-export .invoice-table td input {
+    font-size: 12px !important;
+    padding: 2px !important;
+}
+
+body.pdf-export .total-row {
+    font-size: 14px !important;
+    margin: 3px 0 !important;
+}
+
+body.pdf-export .footer {
+    margin-top: 8px !important;
+}
+
+body.pdf-export .signatures {
+    margin-top: 8px !important;
+    font-size: 13px !important;
+}
+
+@media screen and (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+
+    .container {
+        max-width: 100%;
+    }
+
+    .controls {
+        flex-direction: column;
+        padding: 10px;
+    }
+
+    .btn {
+        width: 100%;
+        padding: 12px;
+        font-size: 16px;
+    }
+
+    .invoice {
+        padding: 15px;
+        font-size: 12px;
+    }
+
+    .header-row {
+        font-size: 12px;
+        line-height: 24px;
+        margin-bottom: 8px;
+    }
+
+    .header-row:first-child {
+        font-size: 14px;
+    }
+
+    input[type="text"],
+    input[type="number"] {
+        font-size: 12px;
+    }
+
+    .full-input {
+        width: calc(100% - 100px);
+    }
+
+    .invoice-table {
+        font-size: 10px;
+        display: block;
+        overflow-x: auto;
+    }
+
+    .invoice-table thead,
+    .invoice-table tbody,
+    .invoice-table tr {
+        display: table;
+        width: 100%;
+        table-layout: fixed;
+    }
+
+    .invoice-table th,
+    .invoice-table td {
+        padding: 4px 2px;
+        font-size: 10px;
+    }
+
+    .invoice-table th:nth-child(2),
+    .invoice-table td:nth-child(2) {
+        min-width: 120px;
+    }
+
+    .invoice-table td input {
+        font-size: 11px;
+        padding: 3px;
+    }
+
+    .btn-remove {
+        padding: 3px 6px;
+        font-size: 12px;
+    }
+
+    .totals {
+        font-size: 12px;
+    }
+
+    .total-row {
+        font-size: 12px;
+        flex-wrap: wrap;
+    }
+
+    .summary-row {
+        font-size: 11px;
+        flex-wrap: wrap;
+    }
+
+    .signature-row {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .signature-input {
+        max-width: 100%;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .invoice {
+        padding: 10px;
+    }
+
+    .invoice-table {
+        font-size: 9px;
+    }
+
+    .invoice-table th,
+    .invoice-table td {
+        padding: 3px 1px;
+    }
+
+    .inline-input {
+        width: 60px;
+        font-size: 11px;
+    }
+
+    .inline-input.small {
+        width: 30px;
+    }
+
+    .header-row {
+        font-size: 11px;
+    }
+}

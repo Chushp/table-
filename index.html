@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Накладна</title>
+    <link rel="stylesheet" href="style.css?v=1.1">
+</head>
+<body>
+    <div class="container">
+        <div class="controls no-print">
+            <button onclick="addRow()" class="btn">+ Додати рядок</button>
+            <button onclick="downloadPDF()" class="btn btn-primary">📄 Завантажити PDF</button>
+        </div>
+
+        <div id="invoice" class="invoice">
+            <div class="header">
+                <div class="header-row">
+                    <span>НАКЛАДНА №</span>
+                    <input type="text" id="invoiceNumber" class="inline-input" aria-label="Номер накладної">
+                    <span>«</span>
+                    <input type="text" id="invoiceDay" class="inline-input small" placeholder="дд" aria-label="День">
+                    <span>»</span>
+                    <input type="text" id="invoiceMonth" class="inline-input" placeholder="місяць" aria-label="Місяць">
+                    <span>20</span>
+                    <input type="text" id="invoiceYear" class="inline-input small" placeholder="рр" aria-label="Рік">
+                    <span>р.</span>
+                </div>
+                <div class="header-row">
+                    <span>Відпущено:</span>
+                    <input type="text" id="released" class="full-input" aria-label="Відпущено">
+                </div>
+                <div class="header-row">
+                    <span>Одержано:</span>
+                    <input type="text" id="received" class="full-input" aria-label="Одержано">
+                </div>
+            </div>
+
+            <table class="invoice-table">
+                <thead>
+                    <tr>
+                        <th>№</th>
+                        <th>Найменування</th>
+                        <th>Кількість</th>
+                        <th>Ціна без ПДВ</th>
+                        <th>Сума без ПДВ</th>
+                        <th class="no-print">Дії</th>
+                    </tr>
+                </thead>
+                <tbody id="invoiceRows">
+                    <tr class="item-row">
+                        <td class="row-number">1</td>
+                        <td><input type="text" class="item-name" value="Пиріжок з картоплею" aria-label="Найменування товару"></td>
+                        <td><input type="number" class="item-quantity" value="0" step="1" min="0" oninput="calculateRow(this)" aria-label="Кількість"></td>
+                        <td><input type="number" class="item-price" value="20.00" step="0.01" min="0" oninput="calculateRow(this)" aria-label="Ціна"></td>
+                        <td class="item-sum">0</td>
+                        <td class="no-print"><button onclick="removeRow(this)" class="btn-remove">✕</button></td>
+                    </tr>
+                    <tr class="item-row">
+                        <td class="row-number">2</td>
+                        <td><input type="text" class="item-name" value="Пиріжок з капустою" aria-label="Найменування товару"></td>
+                        <td><input type="number" class="item-quantity" value="0" step="1" min="0" oninput="calculateRow(this)" aria-label="Кількість"></td>
+                        <td><input type="number" class="item-price" value="20.00" step="0.01" min="0" oninput="calculateRow(this)" aria-label="Ціна"></td>
+                        <td class="item-sum">0</td>
+                        <td class="no-print"><button onclick="removeRow(this)" class="btn-remove">✕</button></td>
+                    </tr>
+                    <tr class="item-row">
+                        <td class="row-number">3</td>
+                        <td><input type="text" class="item-name" value="Чебурек з м'ясом або сиром" aria-label="Найменування товару"></td>
+                        <td><input type="number" class="item-quantity" value="0" step="1" min="0" oninput="calculateRow(this)" aria-label="Кількість"></td>
+                        <td><input type="number" class="item-price" value="33.00" step="0.01" min="0" oninput="calculateRow(this)" aria-label="Ціна"></td>
+                        <td class="item-sum">0</td>
+                        <td class="no-print"><button onclick="removeRow(this)" class="btn-remove">✕</button></td>
+                    </tr>
+                    <tr class="item-row">
+                        <td class="row-number">4</td>
+                        <td><input type="text" class="item-name" value="Беляш з м'ясом" aria-label="Найменування товару"></td>
+                        <td><input type="number" class="item-quantity" value="0" step="1" min="0" oninput="calculateRow(this)" aria-label="Кількість"></td>
+                        <td><input type="number" class="item-price" value="26.00" step="0.01" min="0" oninput="calculateRow(this)" aria-label="Ціна"></td>
+                        <td class="item-sum">0</td>
+                        <td class="no-print"><button onclick="removeRow(this)" class="btn-remove">✕</button></td>
+                    </tr>
+                    <tr class="item-row">
+                        <td class="row-number">5</td>
+                        <td><input type="text" class="item-name" value="Сосиска в тісті (духова)" aria-label="Найменування товару"></td>
+                        <td><input type="number" class="item-quantity" value="0" step="1" min="0" oninput="calculateRow(this)" aria-label="Кількість"></td>
+                        <td><input type="number" class="item-price" value="27.00" step="0.01" min="0" oninput="calculateRow(this)" aria-label="Ціна"></td>
+                        <td class="item-sum">0</td>
+                        <td class="no-print"><button onclick="removeRow(this)" class="btn-remove">✕</button></td>
+                    </tr>
+                    <tr class="item-row">
+                        <td class="row-number">6</td>
+                        <td><input type="text" class="item-name" value="Сосиска в тісті (смажена)" aria-label="Найменування товару"></td>
+                        <td><input type="number" class="item-quantity" value="0" step="1" min="0" oninput="calculateRow(this)" aria-label="Кількість"></td>
+                        <td><input type="number" class="item-price" value="27.00" step="0.01" min="0" oninput="calculateRow(this)" aria-label="Ціна"></td>
+                        <td class="item-sum">0</td>
+                        <td class="no-print"><button onclick="removeRow(this)" class="btn-remove">✕</button></td>
+                    </tr>
+                    <tr class="item-row">
+                        <td class="row-number">7</td>
+                        <td><input type="text" class="item-name" value="Хот-дог з молочною сосискою" aria-label="Найменування товару"></td>
+                        <td><input type="number" class="item-quantity" value="0" step="1" min="0" oninput="calculateRow(this)" aria-label="Кількість"></td>
+                        <td><input type="number" class="item-price" value="35.00" step="0.01" min="0" oninput="calculateRow(this)" aria-label="Ціна"></td>
+                        <td class="item-sum">0</td>
+                        <td class="no-print"><button onclick="removeRow(this)" class="btn-remove">✕</button></td>
+                    </tr>
+                    <tr class="item-row">
+                        <td class="row-number">8</td>
+                        <td><input type="text" class="item-name" value="Хот-дог з копченою сосискою" aria-label="Найменування товару"></td>
+                        <td><input type="number" class="item-quantity" value="0" step="1" min="0" oninput="calculateRow(this)" aria-label="Кількість"></td>
+                        <td><input type="number" class="item-price" value="40.00" step="0.01" min="0" oninput="calculateRow(this)" aria-label="Ціна"></td>
+                        <td class="item-sum">0</td>
+                        <td class="no-print"><button onclick="removeRow(this)" class="btn-remove">✕</button></td>
+                    </tr>
+                    <tr class="item-row">
+                        <td class="row-number">9</td>
+                        <td><input type="text" class="item-name" value="Котлета в тісті (смажена)" aria-label="Найменування товару"></td>
+                        <td><input type="number" class="item-quantity" value="0" step="1" min="0" oninput="calculateRow(this)" aria-label="Кількість"></td>
+                        <td><input type="number" class="item-price" value="27.00" step="0.01" min="0" oninput="calculateRow(this)" aria-label="Ціна"></td>
+                        <td class="item-sum">0</td>
+                        <td class="no-print"><button onclick="removeRow(this)" class="btn-remove">✕</button></td>
+                    </tr>
+                    <tr class="item-row">
+                        <td class="row-number">10</td>
+                        <td><input type="text" class="item-name" value="Котлета в тісті (духова)" aria-label="Найменування товару"></td>
+                        <td><input type="number" class="item-quantity" value="0" step="1" min="0" oninput="calculateRow(this)" aria-label="Кількість"></td>
+                        <td><input type="number" class="item-price" value="27.00" step="0.01" min="0" oninput="calculateRow(this)" aria-label="Ціна"></td>
+                        <td class="item-sum">0</td>
+                        <td class="no-print"><button onclick="removeRow(this)" class="btn-remove">✕</button></td>
+                    </tr>
+                    <tr class="item-row">
+                        <td class="row-number">11</td>
+                        <td><input type="text" class="item-name" value="Самса з м'ясом або сиром" aria-label="Найменування товару"></td>
+                        <td><input type="number" class="item-quantity" value="0" step="1" min="0" oninput="calculateRow(this)" aria-label="Кількість"></td>
+                        <td><input type="number" class="item-price" value="29.00" step="0.01" min="0" oninput="calculateRow(this)" aria-label="Ціна"></td>
+                        <td class="item-sum">0</td>
+                        <td class="no-print"><button onclick="removeRow(this)" class="btn-remove">✕</button></td>
+                    </tr>
+                    <tr class="item-row">
+                        <td class="row-number">12</td>
+                        <td><input type="text" class="item-name" value="Пікнік з молочною сосискою" aria-label="Найменування товару"></td>
+                        <td><input type="number" class="item-quantity" value="0" step="1" min="0" oninput="calculateRow(this)" aria-label="Кількість"></td>
+                        <td><input type="number" class="item-price" value="27.00" step="0.01" min="0" oninput="calculateRow(this)" aria-label="Ціна"></td>
+                        <td class="item-sum">0</td>
+                        <td class="no-print"><button onclick="removeRow(this)" class="btn-remove">✕</button></td>
+                    </tr>
+                    <tr class="item-row">
+                        <td class="row-number">13</td>
+                        <td><input type="text" class="item-name" value="Жульєн в булці з курочкою" aria-label="Найменування товару"></td>
+                        <td><input type="number" class="item-quantity" value="0" step="1" min="0" oninput="calculateRow(this)" aria-label="Кількість"></td>
+                        <td><input type="number" class="item-price" value="46.00" step="0.01" min="0" oninput="calculateRow(this)" aria-label="Ціна"></td>
+                        <td class="item-sum">0</td>
+                        <td class="no-print"><button onclick="removeRow(this)" class="btn-remove">✕</button></td>
+                    </tr>
+                    <tr class="item-row">
+                        <td class="row-number">14</td>
+                        <td><input type="text" class="item-name" value="Піца з ковбасою та грибочками" aria-label="Найменування товару"></td>
+                        <td><input type="number" class="item-quantity" value="0" step="1" min="0" oninput="calculateRow(this)" aria-label="Кількість"></td>
+                        <td><input type="number" class="item-price" value="39.00" step="0.01" min="0" oninput="calculateRow(this)" aria-label="Ціна"></td>
+                        <td class="item-sum">0</td>
+                        <td class="no-print"><button onclick="removeRow(this)" class="btn-remove">✕</button></td>
+                    </tr>
+                    <tr class="item-row">
+                        <td class="row-number">15</td>
+                        <td><input type="text" class="item-name" value="Піца з сиром" aria-label="Найменування товару"></td>
+                        <td><input type="number" class="item-quantity" value="0" step="1" min="0" oninput="calculateRow(this)" aria-label="Кількість"></td>
+                        <td><input type="number" class="item-price" value="39.00" step="0.01" min="0" oninput="calculateRow(this)" aria-label="Ціна"></td>
+                        <td class="item-sum">0</td>
+                        <td class="no-print"><button onclick="removeRow(this)" class="btn-remove">✕</button></td>
+                    </tr>
+                    <tr class="item-row">
+                        <td class="row-number">16</td>
+                        <td><input type="text" class="item-name" value="Бургер з відбивною" aria-label="Найменування товару"></td>
+                        <td><input type="number" class="item-quantity" value="0" step="1" min="0" oninput="calculateRow(this)" aria-label="Кількість"></td>
+                        <td><input type="number" class="item-price" value="39.00" step="0.01" min="0" oninput="calculateRow(this)" aria-label="Ціна"></td>
+                        <td class="item-sum">0</td>
+                        <td class="no-print"><button onclick="removeRow(this)" class="btn-remove">✕</button></td>
+                    </tr>
+                    <tr class="item-row">
+                        <td class="row-number">17</td>
+                        <td><input type="text" class="item-name" value="Бургер з відбивною" aria-label="Найменування товару"></td>
+                        <td><input type="number" class="item-quantity" value="0" step="1" min="0" oninput="calculateRow(this)" aria-label="Кількість"></td>
+                        <td><input type="number" class="item-price" value="38.00" step="0.01" min="0" oninput="calculateRow(this)" aria-label="Ціна"></td>
+                        <td class="item-sum">0</td>
+                        <td class="no-print"><button onclick="removeRow(this)" class="btn-remove">✕</button></td>
+                    </tr>
+                    <tr class="item-row">
+                        <td class="row-number">18</td>
+                        <td><input type="text" class="item-name" value="Бутерброд з відбивною" aria-label="Найменування товару"></td>
+                        <td><input type="number" class="item-quantity" value="0" step="1" min="0" oninput="calculateRow(this)" aria-label="Кількість"></td>
+                        <td><input type="number" class="item-price" value="38.00" step="0.01" min="0" oninput="calculateRow(this)" aria-label="Ціна"></td>
+                        <td class="item-sum">0</td>
+                        <td class="no-print"><button onclick="removeRow(this)" class="btn-remove">✕</button></td>
+                    </tr>
+                    <tr class="item-row">
+                        <td class="row-number">19</td>
+                        <td><input type="text" class="item-name" value="Бутерброд з ковбасою, сиром та огірком" aria-label="Найменування товару"></td>
+                        <td><input type="number" class="item-quantity" value="0" step="1" min="0" oninput="calculateRow(this)" aria-label="Кількість"></td>
+                        <td><input type="number" class="item-price" value="39.00" step="0.01" min="0" oninput="calculateRow(this)" aria-label="Ціна"></td>
+                        <td class="item-sum">0</td>
+                        <td class="no-print"><button onclick="removeRow(this)" class="btn-remove">✕</button></td>
+                    </tr>
+                    <tr class="item-row">
+                        <td class="row-number">20</td>
+                        <td><input type="text" class="item-name" value="Слойка з яблуком" aria-label="Найменування товару"></td>
+                        <td><input type="number" class="item-quantity" value="0" step="1" min="0" oninput="calculateRow(this)" aria-label="Кількість"></td>
+                        <td><input type="number" class="item-price" value="38.00" step="0.01" min="0" oninput="calculateRow(this)" aria-label="Ціна"></td>
+                        <td class="item-sum">0</td>
+                        <td class="no-print"><button onclick="removeRow(this)" class="btn-remove">✕</button></td>
+                    </tr>
+                    <tr class="item-row">
+                        <td class="row-number">21</td>
+                        <td><input type="text" class="item-name" value="Слойка з сиром та родзинками" aria-label="Найменування товару"></td>
+                        <td><input type="number" class="item-quantity" value="0" step="1" min="0" oninput="calculateRow(this)" aria-label="Кількість"></td>
+                        <td><input type="number" class="item-price" value="20.00" step="0.01" min="0" oninput="calculateRow(this)" aria-label="Ціна"></td>
+                        <td class="item-sum">0</td>
+                        <td class="no-print"><button onclick="removeRow(this)" class="btn-remove">✕</button></td>
+                    </tr>
+                    <tr class="item-row">
+                        <td class="row-number">22</td>
+                        <td><input type="text" class="item-name" value="Пампушка з часником" aria-label="Найменування товару"></td>
+                        <td><input type="number" class="item-quantity" value="0" step="1" min="0" oninput="calculateRow(this)" aria-label="Кількість"></td>
+                        <td><input type="number" class="item-price" value="20.00" step="0.01" min="0" oninput="calculateRow(this)" aria-label="Ціна"></td>
+                        <td class="item-sum">0</td>
+                        <td class="no-print"><button onclick="removeRow(this)" class="btn-remove">✕</button></td>
+                    </tr>
+                    <tr class="item-row">
+                        <td class="row-number">23</td>
+                        <td><input type="text" class="item-name" value="Сендвіч з курочкою" aria-label="Найменування товару"></td>
+                        <td><input type="number" class="item-quantity" value="0" step="1" min="0" oninput="calculateRow(this)" aria-label="Кількість"></td>
+                        <td><input type="number" class="item-price" value="20.00" step="0.01" min="0" oninput="calculateRow(this)" aria-label="Ціна"></td>
+                        <td class="item-sum">0</td>
+                        <td class="no-print"><button onclick="removeRow(this)" class="btn-remove">✕</button></td>
+                    </tr>
+                    <tr class="item-row">
+                        <td class="row-number">24</td>
+                        <td><input type="text" class="item-name" value="Хліб" aria-label="Найменування товару"></td>
+                        <td><input type="number" class="item-quantity" value="0" step="1" min="0" oninput="calculateRow(this)" aria-label="Кількість"></td>
+                        <td><input type="number" class="item-price" value="40.00" step="0.01" min="0" oninput="calculateRow(this)" aria-label="Ціна"></td>
+                        <td class="item-sum">0</td>
+                        <td class="no-print"><button onclick="removeRow(this)" class="btn-remove">✕</button></td>
+                    </tr>
+                    <tr class="item-row">
+                        <td class="row-number">25</td>
+                        <td><input type="text" class="item-name" value="Розтягай" aria-label="Найменування товару"></td>
+                        <td><input type="number" class="item-quantity" value="0" step="1" min="0" oninput="calculateRow(this)" aria-label="Кількість"></td>
+                        <td><input type="number" class="item-price" value="25.00" step="0.01" min="0" oninput="calculateRow(this)" aria-label="Ціна"></td>
+                        <td class="item-sum">0</td>
+                        <td class="no-print"><button onclick="removeRow(this)" class="btn-remove">✕</button></td>
+                    </tr>
+                    <tr class="item-row">
+                        <td class="row-number">26</td>
+                        <td><input type="text" class="item-name" value="Жульєн в булці з ковбасою" aria-label="Найменування товару"></td>
+                        <td><input type="number" class="item-quantity" value="0" step="1" min="0" oninput="calculateRow(this)" aria-label="Кількість"></td>
+                        <td><input type="number" class="item-price" value="46.00" step="0.01" min="0" oninput="calculateRow(this)" aria-label="Ціна"></td>
+                        <td class="item-sum">0</td>
+                        <td class="no-print"><button onclick="removeRow(this)" class="btn-remove">✕</button></td>
+                    </tr>
+                    <tr class="item-row">
+                        <td class="row-number">27</td>
+                        <td><input type="text" class="item-name" value="Лодочки" aria-label="Найменування товару"></td>
+                        <td><input type="number" class="item-quantity" value="0" step="1" min="0" oninput="calculateRow(this)" aria-label="Кількість"></td>
+                        <td><input type="number" class="item-price" value="40.00" step="0.01" min="0" oninput="calculateRow(this)" aria-label="Ціна"></td>
+                        <td class="item-sum">0</td>
+                        <td class="no-print"><button onclick="removeRow(this)" class="btn-remove">✕</button></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="footer">
+                <div class="totals">
+                    <div class="total-row">
+                        <span>Всього</span>
+                        <span id="totalWithoutVAT">0.00</span>
+                    </div>
+                </div>
+
+                <div class="signatures">
+                    <div class="signature-row">
+                        <span>Відпустив</span>
+                        <input type="text" id="releasedBy" class="signature-input" aria-label="Підпис відпустив">
+                        <span>Одержав</span>
+                        <input type="text" id="receivedBy" class="signature-input" aria-label="Підпис одержав">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script src="script.js?v=1.2"></script>
+</body>
+</html>
