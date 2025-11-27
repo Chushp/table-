@@ -83,14 +83,19 @@ document.addEventListener('input', function(e) {
 function calculateTotals() {
     const rows = document.querySelectorAll('.item-row');
     let total = 0;
+    let totalQuantity = 0;
     
     rows.forEach(row => {
         const sum = parseFloat(row.querySelector('.item-sum').textContent) || 0;
         total += sum;
+        
+        const quantity = parseFloat(row.querySelector('.item-quantity').value) || 0;
+        totalQuantity += quantity;
     });
     
     // Обновление итогов
     document.getElementById('totalWithoutVAT').textContent = total.toFixed(2);
+    document.getElementById('totalQuantity').textContent = totalQuantity;
     
     // Обновление футера
     const totalGrn = Math.floor(total);
