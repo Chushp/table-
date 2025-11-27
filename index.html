@@ -52,7 +52,7 @@
                     <tr class="item-row">
                         <td class="row-number">1</td>
                         <td><input type="text" class="item-name" value="Пиріжок з картоплею" aria-label="Найменування товару"></td>
-                        <td><input type="number" class="item-exchange" value="0" step="1" min="0" aria-label="Обмін"></td>
+                        <td><input type="number" class="item-exchange" value="0" step="1" min="0" oninput="calculateTotals()" aria-label="Обмін"></td>
                         <td><input type="number" class="item-quantity" value="0" step="1" min="0" oninput="calculateRow(this)" aria-label="Кількість"></td>
                         <td><input type="number" class="item-price" value="20.00" step="0.01" min="0" oninput="calculateRow(this)" aria-label="Ціна"></td>
                         <td class="item-sum">0</td>
@@ -61,7 +61,7 @@
                     <tr class="item-row">
                         <td class="row-number">2</td>
                         <td><input type="text" class="item-name" value="Пиріжок з капустою" aria-label="Найменування товару"></td>
-                        <td><input type="number" class="item-exchange" value="0" step="1" min="0" aria-label="Обмін"></td>
+                        <td><input type="number" class="item-exchange" value="0" step="1" min="0" oninput="calculateTotals()" aria-label="Обмін"></td>
                         <td><input type="number" class="item-quantity" value="0" step="1" min="0" oninput="calculateRow(this)" aria-label="Кількість"></td>
                         <td><input type="number" class="item-price" value="20.00" step="0.01" min="0" oninput="calculateRow(this)" aria-label="Ціна"></td>
                         <td class="item-sum">0</td>
@@ -70,7 +70,7 @@
                     <tr class="item-row">
                         <td class="row-number">3</td>
                         <td><input type="text" class="item-name" value="Чебурек з м'ясом або сиром" aria-label="Найменування товару"></td>
-                        <td><input type="number" class="item-exchange" value="0" step="1" min="0" aria-label="Обмін"></td>
+                        <td><input type="number" class="item-exchange" value="0" step="1" min="0" oninput="calculateTotals()" aria-label="Обмін"></td>
                         <td><input type="number" class="item-quantity" value="0" step="1" min="0" oninput="calculateRow(this)" aria-label="Кількість"></td>
                         <td><input type="number" class="item-price" value="25.00" step="0.01" min="0" oninput="calculateRow(this)" aria-label="Ціна"></td>
                         <td class="item-sum">0</td>
@@ -79,7 +79,7 @@
                     <tr class="item-row">
                         <td class="row-number">4</td>
                         <td><input type="text" class="item-name" value="Беляш з м'ясом" aria-label="Найменування товару"></td>
-                        <td><input type="number" class="item-exchange" value="0" step="1" min="0" aria-label="Обмін"></td>
+                        <td><input type="number" class="item-exchange" value="0" step="1" min="0" oninput="calculateTotals()" aria-label="Обмін"></td>
                         <td><input type="number" class="item-quantity" value="0" step="1" min="0" oninput="calculateRow(this)" aria-label="Кількість"></td>
                         <td><input type="number" class="item-price" value="26.00" step="0.01" min="0" oninput="calculateRow(this)" aria-label="Ціна"></td>
                         <td class="item-sum">0</td>
@@ -88,7 +88,7 @@
                     <tr class="item-row">
                         <td class="row-number">5</td>
                         <td><input type="text" class="item-name" value="Сосиска в тісті (духова)" aria-label="Найменування товару"></td>
-                        <td><input type="number" class="item-exchange" value="0" step="1" min="0" aria-label="Обмін"></td>
+                        <td><input type="number" class="item-exchange" value="0" step="1" min="0" oninput="calculateTotals()" aria-label="Обмін"></td>
                         <td><input type="number" class="item-quantity" value="0" step="1" min="0" oninput="calculateRow(this)" aria-label="Кількість"></td>
                         <td><input type="number" class="item-price" value="27.00" step="0.01" min="0" oninput="calculateRow(this)" aria-label="Ціна"></td>
                         <td class="item-sum">0</td>
@@ -97,7 +97,7 @@
                     <tr class="item-row">
                         <td class="row-number">6</td>
                         <td><input type="text" class="item-name" value="Сосиска в тісті (жарена)" aria-label="Найменування товару"></td>
-                        <td><input type="number" class="item-exchange" value="0" step="1" min="0" aria-label="Обмін"></td>
+                        <td><input type="number" class="item-exchange" value="0" step="1" min="0" oninput="calculateTotals()" aria-label="Обмін"></td>
                         <td><input type="number" class="item-quantity" value="0" step="1" min="0" oninput="calculateRow(this)" aria-label="Кількість"></td>
                         <td><input type="number" class="item-price" value="27.00" step="0.01" min="0" oninput="calculateRow(this)" aria-label="Ціна"></td>
                         <td class="item-sum">0</td>
@@ -106,7 +106,7 @@
                     <tr class="item-row">
                         <td class="row-number">7</td>
                         <td><input type="text" class="item-name" value="Хот-дог з молочною сосискою" aria-label="Найменування товару"></td>
-                        <td><input type="number" class="item-exchange" value="0" step="1" min="0" aria-label="Обмін"></td>
+                        <td><input type="number" class="item-exchange" value="0" step="1" min="0" oninput="calculateTotals()" aria-label="Обмін"></td>
                         <td><input type="number" class="item-quantity" value="0" step="1" min="0" oninput="calculateRow(this)" aria-label="Кількість"></td>
                         <td><input type="number" class="item-price" value="35.00" step="0.01" min="0" oninput="calculateRow(this)" aria-label="Ціна"></td>
                         <td class="item-sum">0</td>
@@ -115,7 +115,7 @@
                     <tr class="item-row">
                         <td class="row-number">8</td>
                         <td><input type="text" class="item-name" value="Хот-дог з копченою сосискою" aria-label="Найменування товару"></td>
-                        <td><input type="number" class="item-exchange" value="0" step="1" min="0" aria-label="Обмін"></td>
+                        <td><input type="number" class="item-exchange" value="0" step="1" min="0" oninput="calculateTotals()" aria-label="Обмін"></td>
                         <td><input type="number" class="item-quantity" value="0" step="1" min="0" oninput="calculateRow(this)" aria-label="Кількість"></td>
                         <td><input type="number" class="item-price" value="40.00" step="0.01" min="0" oninput="calculateRow(this)" aria-label="Ціна"></td>
                         <td class="item-sum">0</td>
@@ -124,7 +124,7 @@
                     <tr class="item-row">
                         <td class="row-number">9</td>
                         <td><input type="text" class="item-name" value="Котлета в тісті (жарена)" aria-label="Найменування товару"></td>
-                        <td><input type="number" class="item-exchange" value="0" step="1" min="0" aria-label="Обмін"></td>
+                        <td><input type="number" class="item-exchange" value="0" step="1" min="0" oninput="calculateTotals()" aria-label="Обмін"></td>
                         <td><input type="number" class="item-quantity" value="0" step="1" min="0" oninput="calculateRow(this)" aria-label="Кількість"></td>
                         <td><input type="number" class="item-price" value="27.00" step="0.01" min="0" oninput="calculateRow(this)" aria-label="Ціна"></td>
                         <td class="item-sum">0</td>
@@ -133,7 +133,7 @@
                     <tr class="item-row">
                         <td class="row-number">10</td>
                         <td><input type="text" class="item-name" value="Котлета в тісті (духова)" aria-label="Найменування товару"></td>
-                        <td><input type="number" class="item-exchange" value="0" step="1" min="0" aria-label="Обмін"></td>
+                        <td><input type="number" class="item-exchange" value="0" step="1" min="0" oninput="calculateTotals()" aria-label="Обмін"></td>
                         <td><input type="number" class="item-quantity" value="0" step="1" min="0" oninput="calculateRow(this)" aria-label="Кількість"></td>
                         <td><input type="number" class="item-price" value="27.00" step="0.01" min="0" oninput="calculateRow(this)" aria-label="Ціна"></td>
                         <td class="item-sum">0</td>
@@ -142,7 +142,7 @@
                     <tr class="item-row">
                         <td class="row-number">11</td>
                         <td><input type="text" class="item-name" value="Самса з м'ясом або сиром" aria-label="Найменування товару"></td>
-                        <td><input type="number" class="item-exchange" value="0" step="1" min="0" aria-label="Обмін"></td>
+                        <td><input type="number" class="item-exchange" value="0" step="1" min="0" oninput="calculateTotals()" aria-label="Обмін"></td>
                         <td><input type="number" class="item-quantity" value="0" step="1" min="0" oninput="calculateRow(this)" aria-label="Кількість"></td>
                         <td><input type="number" class="item-price" value="29.00" step="0.01" min="0" oninput="calculateRow(this)" aria-label="Ціна"></td>
                         <td class="item-sum">0</td>
@@ -151,7 +151,7 @@
                     <tr class="item-row">
                         <td class="row-number">12</td>
                         <td><input type="text" class="item-name" value="Пікнік з молочною сосискою" aria-label="Найменування товару"></td>
-                        <td><input type="number" class="item-exchange" value="0" step="1" min="0" aria-label="Обмін"></td>
+                        <td><input type="number" class="item-exchange" value="0" step="1" min="0" oninput="calculateTotals()" aria-label="Обмін"></td>
                         <td><input type="number" class="item-quantity" value="0" step="1" min="0" oninput="calculateRow(this)" aria-label="Кількість"></td>
                         <td><input type="number" class="item-price" value="27.00" step="0.01" min="0" oninput="calculateRow(this)" aria-label="Ціна"></td>
                         <td class="item-sum">0</td>
@@ -160,7 +160,7 @@
                     <tr class="item-row">
                         <td class="row-number">13</td>
                         <td><input type="text" class="item-name" value="Жульєн в булці з курочкою" aria-label="Найменування товару"></td>
-                        <td><input type="number" class="item-exchange" value="0" step="1" min="0" aria-label="Обмін"></td>
+                        <td><input type="number" class="item-exchange" value="0" step="1" min="0" oninput="calculateTotals()" aria-label="Обмін"></td>
                         <td><input type="number" class="item-quantity" value="0" step="1" min="0" oninput="calculateRow(this)" aria-label="Кількість"></td>
                         <td><input type="number" class="item-price" value="46.00" step="0.01" min="0" oninput="calculateRow(this)" aria-label="Ціна"></td>
                         <td class="item-sum">0</td>
@@ -169,7 +169,7 @@
                     <tr class="item-row">
                         <td class="row-number">14</td>
                         <td><input type="text" class="item-name" value="Піца з ковбасою та грибочками" aria-label="Найменування товару"></td>
-                        <td><input type="number" class="item-exchange" value="0" step="1" min="0" aria-label="Обмін"></td>
+                        <td><input type="number" class="item-exchange" value="0" step="1" min="0" oninput="calculateTotals()" aria-label="Обмін"></td>
                         <td><input type="number" class="item-quantity" value="0" step="1" min="0" oninput="calculateRow(this)" aria-label="Кількість"></td>
                         <td><input type="number" class="item-price" value="39.00" step="0.01" min="0" oninput="calculateRow(this)" aria-label="Ціна"></td>
                         <td class="item-sum">0</td>
@@ -178,7 +178,7 @@
                     <tr class="item-row">
                         <td class="row-number">15</td>
                         <td><input type="text" class="item-name" value="Піца з курочкою та грибочками" aria-label="Найменування товару"></td>
-                        <td><input type="number" class="item-exchange" value="0" step="1" min="0" aria-label="Обмін"></td>
+                        <td><input type="number" class="item-exchange" value="0" step="1" min="0" oninput="calculateTotals()" aria-label="Обмін"></td>
                         <td><input type="number" class="item-quantity" value="0" step="1" min="0" oninput="calculateRow(this)" aria-label="Кількість"></td>
                         <td><input type="number" class="item-price" value="39.00" step="0.01" min="0" oninput="calculateRow(this)" aria-label="Ціна"></td>
                         <td class="item-sum">0</td>
@@ -187,7 +187,7 @@
                     <tr class="item-row">
                         <td class="row-number">16</td>
                         <td><input type="text" class="item-name" value="Піца з сиром" aria-label="Найменування товару"></td>
-                        <td><input type="number" class="item-exchange" value="0" step="1" min="0" aria-label="Обмін"></td>
+                        <td><input type="number" class="item-exchange" value="0" step="1" min="0" oninput="calculateTotals()" aria-label="Обмін"></td>
                         <td><input type="number" class="item-quantity" value="0" step="1" min="0" oninput="calculateRow(this)" aria-label="Кількість"></td>
                         <td><input type="number" class="item-price" value="39.00" step="0.01" min="0" oninput="calculateRow(this)" aria-label="Ціна"></td>
                         <td class="item-sum">0</td>
@@ -196,7 +196,7 @@
                     <tr class="item-row">
                         <td class="row-number">17</td>
                         <td><input type="text" class="item-name" value="Бургер з відбивною" aria-label="Найменування товару"></td>
-                        <td><input type="number" class="item-exchange" value="0" step="1" min="0" aria-label="Обмін"></td>
+                        <td><input type="number" class="item-exchange" value="0" step="1" min="0" oninput="calculateTotals()" aria-label="Обмін"></td>
                         <td><input type="number" class="item-quantity" value="0" step="1" min="0" oninput="calculateRow(this)" aria-label="Кількість"></td>
                         <td><input type="number" class="item-price" value="38.00" step="0.01" min="0" oninput="calculateRow(this)" aria-label="Ціна"></td>
                         <td class="item-sum">0</td>
@@ -205,7 +205,7 @@
                     <tr class="item-row">
                         <td class="row-number">18</td>
                         <td><input type="text" class="item-name" value="Бургер з котлетою" aria-label="Найменування товару"></td>
-                        <td><input type="number" class="item-exchange" value="0" step="1" min="0" aria-label="Обмін"></td>
+                        <td><input type="number" class="item-exchange" value="0" step="1" min="0" oninput="calculateTotals()" aria-label="Обмін"></td>
                         <td><input type="number" class="item-quantity" value="0" step="1" min="0" oninput="calculateRow(this)" aria-label="Кількість"></td>
                         <td><input type="number" class="item-price" value="38.00" step="0.01" min="0" oninput="calculateRow(this)" aria-label="Ціна"></td>
                         <td class="item-sum">0</td>
@@ -214,7 +214,7 @@
                     <tr class="item-row">
                         <td class="row-number">19</td>
                         <td><input type="text" class="item-name" value="Бутерброд з відбивною" aria-label="Найменування товару"></td>
-                        <td><input type="number" class="item-exchange" value="0" step="1" min="0" aria-label="Обмін"></td>
+                        <td><input type="number" class="item-exchange" value="0" step="1" min="0" oninput="calculateTotals()" aria-label="Обмін"></td>
                         <td><input type="number" class="item-quantity" value="0" step="1" min="0" oninput="calculateRow(this)" aria-label="Кількість"></td>
                         <td><input type="number" class="item-price" value="39.00" step="0.01" min="0" oninput="calculateRow(this)" aria-label="Ціна"></td>
                         <td class="item-sum">0</td>
@@ -223,7 +223,7 @@
                     <tr class="item-row">
                         <td class="row-number">20</td>
                         <td><input type="text" class="item-name" value="Бутерброд з ковбасою, сиром та огірком" aria-label="Найменування товару"></td>
-                        <td><input type="number" class="item-exchange" value="0" step="1" min="0" aria-label="Обмін"></td>
+                        <td><input type="number" class="item-exchange" value="0" step="1" min="0" oninput="calculateTotals()" aria-label="Обмін"></td>
                         <td><input type="number" class="item-quantity" value="0" step="1" min="0" oninput="calculateRow(this)" aria-label="Кількість"></td>
                         <td><input type="number" class="item-price" value="38.00" step="0.01" min="0" oninput="calculateRow(this)" aria-label="Ціна"></td>
                         <td class="item-sum">0</td>
@@ -232,7 +232,7 @@
                     <tr class="item-row">
                         <td class="row-number">21</td>
                         <td><input type="text" class="item-name" value="Бутерброд новый з ковбасою" aria-label="Найменування товару"></td>
-                        <td><input type="number" class="item-exchange" value="0" step="1" min="0" aria-label="Обмін"></td>
+                        <td><input type="number" class="item-exchange" value="0" step="1" min="0" oninput="calculateTotals()" aria-label="Обмін"></td>
                         <td><input type="number" class="item-quantity" value="0" step="1" min="0" oninput="calculateRow(this)" aria-label="Кількість"></td>
                         <td><input type="number" class="item-price" value="38.00" step="0.01" min="0" oninput="calculateRow(this)" aria-label="Ціна"></td>
                         <td class="item-sum">0</td>
@@ -241,7 +241,7 @@
                     <tr class="item-row">
                         <td class="row-number">22</td>
                         <td><input type="text" class="item-name" value="Слойка з яблуком" aria-label="Найменування товару"></td>
-                        <td><input type="number" class="item-exchange" value="0" step="1" min="0" aria-label="Обмін"></td>
+                        <td><input type="number" class="item-exchange" value="0" step="1" min="0" oninput="calculateTotals()" aria-label="Обмін"></td>
                         <td><input type="number" class="item-quantity" value="0" step="1" min="0" oninput="calculateRow(this)" aria-label="Кількість"></td>
                         <td><input type="number" class="item-price" value="20.00" step="0.01" min="0" oninput="calculateRow(this)" aria-label="Ціна"></td>
                         <td class="item-sum">0</td>
@@ -250,7 +250,7 @@
                     <tr class="item-row">
                         <td class="row-number">23</td>
                         <td><input type="text" class="item-name" value="Слойка з сиром та родзинками" aria-label="Найменування товару"></td>
-                        <td><input type="number" class="item-exchange" value="0" step="1" min="0" aria-label="Обмін"></td>
+                        <td><input type="number" class="item-exchange" value="0" step="1" min="0" oninput="calculateTotals()" aria-label="Обмін"></td>
                         <td><input type="number" class="item-quantity" value="0" step="1" min="0" oninput="calculateRow(this)" aria-label="Кількість"></td>
                         <td><input type="number" class="item-price" value="20.00" step="0.01" min="0" oninput="calculateRow(this)" aria-label="Ціна"></td>
                         <td class="item-sum">0</td>
@@ -259,7 +259,7 @@
                     <tr class="item-row">
                         <td class="row-number">24</td>
                         <td><input type="text" class="item-name" value="Пампушка з часником" aria-label="Найменування товару"></td>
-                        <td><input type="number" class="item-exchange" value="0" step="1" min="0" aria-label="Обмін"></td>
+                        <td><input type="number" class="item-exchange" value="0" step="1" min="0" oninput="calculateTotals()" aria-label="Обмін"></td>
                         <td><input type="number" class="item-quantity" value="0" step="1" min="0" oninput="calculateRow(this)" aria-label="Кількість"></td>
                         <td><input type="number" class="item-price" value="20.00" step="0.01" min="0" oninput="calculateRow(this)" aria-label="Ціна"></td>
                         <td class="item-sum">0</td>
@@ -268,7 +268,7 @@
                     <tr class="item-row">
                         <td class="row-number">25</td>
                         <td><input type="text" class="item-name" value="Сендвіч з курочкою" aria-label="Найменування товару"></td>
-                        <td><input type="number" class="item-exchange" value="0" step="1" min="0" aria-label="Обмін"></td>
+                        <td><input type="number" class="item-exchange" value="0" step="1" min="0" oninput="calculateTotals()" aria-label="Обмін"></td>
                         <td><input type="number" class="item-quantity" value="0" step="1" min="0" oninput="calculateRow(this)" aria-label="Кількість"></td>
                         <td><input type="number" class="item-price" value="40.00" step="0.01" min="0" oninput="calculateRow(this)" aria-label="Ціна"></td>
                         <td class="item-sum">0</td>
@@ -277,7 +277,7 @@
                     <tr class="item-row">
                         <td class="row-number">26</td>
                         <td><input type="text" class="item-name" value="Хліб" aria-label="Найменування товару"></td>
-                        <td><input type="number" class="item-exchange" value="0" step="1" min="0" aria-label="Обмін"></td>
+                        <td><input type="number" class="item-exchange" value="0" step="1" min="0" oninput="calculateTotals()" aria-label="Обмін"></td>
                         <td><input type="number" class="item-quantity" value="0" step="1" min="0" oninput="calculateRow(this)" aria-label="Кількість"></td>
                         <td><input type="number" class="item-price" value="25.00" step="0.01" min="0" oninput="calculateRow(this)" aria-label="Ціна"></td>
                         <td class="item-sum">0</td>
@@ -286,7 +286,7 @@
                     <tr class="item-row">
                         <td class="row-number">27</td>
                         <td><input type="text" class="item-name" value="Розтягай" aria-label="Найменування товару"></td>
-                        <td><input type="number" class="item-exchange" value="0" step="1" min="0" aria-label="Обмін"></td>
+                        <td><input type="number" class="item-exchange" value="0" step="1" min="0" oninput="calculateTotals()" aria-label="Обмін"></td>
                         <td><input type="number" class="item-quantity" value="0" step="1" min="0" oninput="calculateRow(this)" aria-label="Кількість"></td>
                         <td><input type="number" class="item-price" value="29.00" step="0.01" min="0" oninput="calculateRow(this)" aria-label="Ціна"></td>
                         <td class="item-sum">0</td>
@@ -295,7 +295,7 @@
                     <tr class="item-row">
                         <td class="row-number">28</td>
                         <td><input type="text" class="item-name" value="Жульєн в булці з ковбаскою та яйцем" aria-label="Найменування товару"></td>
-                        <td><input type="number" class="item-exchange" value="0" step="1" min="0" aria-label="Обмін"></td>
+                        <td><input type="number" class="item-exchange" value="0" step="1" min="0" oninput="calculateTotals()" aria-label="Обмін"></td>
                         <td><input type="number" class="item-quantity" value="0" step="1" min="0" oninput="calculateRow(this)" aria-label="Кількість"></td>
                         <td><input type="number" class="item-price" value="46.00" step="0.01" min="0" oninput="calculateRow(this)" aria-label="Ціна"></td>
                         <td class="item-sum">0</td>
@@ -304,7 +304,7 @@
                     <tr class="item-row">
                         <td class="row-number">29</td>
                         <td><input type="text" class="item-name" value="Лодочки" aria-label="Найменування товару"></td>
-                        <td><input type="number" class="item-exchange" value="0" step="1" min="0" aria-label="Обмін"></td>
+                        <td><input type="number" class="item-exchange" value="0" step="1" min="0" oninput="calculateTotals()" aria-label="Обмін"></td>
                         <td><input type="number" class="item-quantity" value="0" step="1" min="0" oninput="calculateRow(this)" aria-label="Кількість"></td>
                         <td><input type="number" class="item-price" value="40.00" step="0.01" min="0" oninput="calculateRow(this)" aria-label="Ціна"></td>
                         <td class="item-sum">0</td>

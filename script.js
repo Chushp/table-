@@ -8,7 +8,7 @@ function addRow() {
     newRow.innerHTML = `
         <td class="row-number">${rowCount}</td>
         <td><input type="text" class="item-name" aria-label="Найменування товару"></td>
-        <td><input type="number" class="item-exchange" value="0" step="1" min="0" aria-label="Обмін"></td>
+        <td><input type="number" class="item-exchange" value="0" step="1" min="0" oninput="calculateTotals()" aria-label="Обмін"></td>
         <td><input type="number" class="item-quantity" value="0" step="1" min="0" oninput="calculateRow(this)" aria-label="Кількість"></td>
         <td><input type="number" class="item-price" value="0" step="0.01" min="0" oninput="calculateRow(this)" aria-label="Ціна"></td>
         <td class="item-sum">0</td>
@@ -77,6 +77,10 @@ document.addEventListener('input', function(e) {
                 calculateRow(priceInput);
             }
         }
+    }
+    
+    if (e.target.classList.contains('item-exchange')) {
+        calculateTotals();
     }
 });
 
