@@ -295,12 +295,14 @@ input[type="number"] {
 body.pdf-export .invoice {
     padding: 10px 15px !important;
     font-size: 13px !important;
+    font-weight: bold !important;
 }
 
 body.pdf-export .header-row {
     margin-bottom: 4px !important;
     line-height: 20px !important;
     font-size: 14px !important;
+    font-weight: bold !important;
 }
 
 body.pdf-export .header-row:first-child {
@@ -330,6 +332,11 @@ body.pdf-export .invoice-table td input {
 body.pdf-export .total-row {
     font-size: 14px !important;
     margin: 3px 0 !important;
+    font-weight: bold !important;
+}
+
+body.pdf-export .total-row span {
+    font-weight: bold !important;
 }
 
 body.pdf-export .footer {
@@ -339,6 +346,20 @@ body.pdf-export .footer {
 body.pdf-export .signatures {
     margin-top: 8px !important;
     font-size: 13px !important;
+    font-weight: bold !important;
+}
+
+body.pdf-export .signature-row {
+    font-weight: bold !important;
+}
+
+body.pdf-export .signature-input {
+    font-weight: bold !important;
+}
+
+body.pdf-export input[type="text"],
+body.pdf-export input[type="number"] {
+    font-weight: bold !important;
 }
 
 @media screen and (max-width: 768px) {
