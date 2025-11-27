@@ -141,6 +141,7 @@ input[type="number"] {
     max-width: 250px;
 }
 
+.item-exchange,
 .item-quantity,
 .item-price {
     width: 10%;

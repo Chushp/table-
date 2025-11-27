@@ -8,6 +8,7 @@ function addRow() {
     newRow.innerHTML = `
         <td class="row-number">${rowCount}</td>
         <td><input type="text" class="item-name" aria-label="Найменування товару"></td>
+        <td><input type="number" class="item-exchange" value="0" step="1" min="0" aria-label="Обмін"></td>
         <td><input type="number" class="item-quantity" value="0" step="1" min="0" oninput="calculateRow(this)" aria-label="Кількість"></td>
         <td><input type="number" class="item-price" value="0" step="0.01" min="0" oninput="calculateRow(this)" aria-label="Ціна"></td>
         <td class="item-sum">0</td>
@@ -83,11 +84,15 @@ document.addEventListener('input', function(e) {
 function calculateTotals() {
     const rows = document.querySelectorAll('.item-row');
     let total = 0;
+    let totalExchange = 0;
     let totalQuantity = 0;
     
     rows.forEach(row => {
         const sum = parseFloat(row.querySelector('.item-sum').textContent) || 0;
         total += sum;
+        
+        const exchange = parseFloat(row.querySelector('.item-exchange').value) || 0;
+        totalExchange += exchange;
         
         const quantity = parseFloat(row.querySelector('.item-quantity').value) || 0;
         totalQuantity += quantity;
@@ -95,6 +100,7 @@ function calculateTotals() {
     
     // Обновление итогов
     document.getElementById('totalWithoutVAT').textContent = total.toFixed(2);
+    document.getElementById('totalExchange').textContent = totalExchange;
     document.getElementById('totalQuantity').textContent = totalQuantity;
     
     // Обновление футера
