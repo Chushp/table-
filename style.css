@@ -294,24 +294,24 @@ input[type="number"] {
 /* Стили для PDF экспорта */
 body.pdf-export .invoice {
     padding: 10px 15px !important;
-    font-size: 13px !important;
+    font-size: 16px !important;
     font-weight: bold !important;
 }
 
 body.pdf-export .header-row {
     margin-bottom: 4px !important;
-    line-height: 20px !important;
-    font-size: 14px !important;
+    line-height: 24px !important;
+    font-size: 17px !important;
     font-weight: bold !important;
 }
 
 body.pdf-export .header-row:first-child {
-    font-size: 16px !important;
+    font-size: 20px !important;
     font-weight: bold !important;
 }
 
 body.pdf-export .invoice-table {
-    font-size: 12px !important;
+    font-size: 15px !important;
     margin: 8px 0 !important;
 }
 
@@ -324,13 +324,13 @@ body.pdf-export .invoice-table td {
 }
 
 body.pdf-export .invoice-table td input {
-    font-size: 12px !important;
+    font-size: 15px !important;
     padding: 2px !important;
     font-weight: bold !important;
 }
 
 body.pdf-export .total-row {
-    font-size: 14px !important;
+    font-size: 17px !important;
     margin: 3px 0 !important;
     font-weight: bold !important;
 }
@@ -345,7 +345,7 @@ body.pdf-export .footer {
 
 body.pdf-export .signatures {
     margin-top: 8px !important;
-    font-size: 13px !important;
+    font-size: 16px !important;
     font-weight: bold !important;
 }
 
