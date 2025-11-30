@@ -8,12 +8,18 @@
 </head>
 <body>
     <div class="container">
-        <div class="controls no-print">
-            <button onclick="addRow()" class="btn">+ Додати рядок</button>
-            <button onclick="downloadPDF()" class="btn btn-primary">📄 Завантажити PDF</button>
+        <div class="tabs no-print">
+            <button onclick="showTab('invoice')" id="tabInvoice" class="tab-btn active">Накладна</button>
+            <button onclick="showTab('sums')" id="tabSums" class="tab-btn">Сумми</button>
         </div>
 
-        <div id="invoice" class="invoice">
+        <div id="invoiceTab" class="tab-content">
+            <div class="controls no-print">
+                <button onclick="addRow()" class="btn">+ Додати рядок</button>
+                <button onclick="downloadPDF()" class="btn btn-primary">📄 Завантажити PDF</button>
+            </div>
+
+            <div id="invoice" class="invoice">
             <div class="header">
                 <div class="header-row">
                     <span>НАКЛАДНА №</span>
@@ -335,6 +341,165 @@
                         <input type="text" id="releasedBy" class="signature-input" aria-label="Підпис відпустив">
                         <span>Одержав</span>
                         <input type="text" id="receivedBy" class="signature-input" aria-label="Підпис одержав">
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+
+        <div id="sumsTab" class="tab-content hidden">
+            <div class="controls no-print">
+                <button onclick="addSumRow()" class="btn">+ Додати рядок</button>
+                <button onclick="downloadSumsPDF()" class="btn btn-primary">📄 Завантажити PDF</button>
+            </div>
+
+            <div id="sumsTable" class="invoice">
+                <div class="header">
+                    <div class="header-row">
+                        <span>ВИВІЗ</span>
+                        <input type="text" id="sumsDate" class="inline-input" placeholder="01.12.25" aria-label="Дата">
+                    </div>
+                </div>
+
+                <table class="invoice-table">
+                    <thead>
+                        <tr>
+                            <th>№</th>
+                            <th>Назва</th>
+                            <th>Сума</th>
+                            <th class="no-print">Дії</th>
+                        </tr>
+                    </thead>
+                    <tbody id="sumsRows">
+                        <tr class="sum-row">
+                            <td class="row-number">1</td>
+                            <td><input type="text" class="sum-name" value="Аня - Куйб" aria-label="Назва"></td>
+                            <td><input type="number" class="sum-amount" value="0" step="0.01" min="0" oninput="calculateSumsTotal()" aria-label="Сума"></td>
+                            <td class="no-print"><button onclick="removeSumRow(this)" class="btn-remove">✕</button></td>
+                        </tr>
+                        <tr class="sum-row">
+                            <td class="row-number">2</td>
+                            <td><input type="text" class="sum-name" value="Валентина Васильевна" aria-label="Назва"></td>
+                            <td><input type="number" class="sum-amount" value="0" step="0.01" min="0" oninput="calculateSumsTotal()" aria-label="Сума"></td>
+                            <td class="no-print"><button onclick="removeSumRow(this)" class="btn-remove">✕</button></td>
+                        </tr>
+                        <tr class="sum-row">
+                            <td class="row-number">3</td>
+                            <td><input type="text" class="sum-name" value="Лена - Куйб" aria-label="Назва"></td>
+                            <td><input type="number" class="sum-amount" value="0" step="0.01" min="0" oninput="calculateSumsTotal()" aria-label="Сума"></td>
+                            <td class="no-print"><button onclick="removeSumRow(this)" class="btn-remove">✕</button></td>
+                        </tr>
+                        <tr class="sum-row">
+                            <td class="row-number">4</td>
+                            <td><input type="text" class="sum-name" value="ул. 8 Марта 76а (РУВД)" aria-label="Назва"></td>
+                            <td><input type="number" class="sum-amount" value="0" step="0.01" min="0" oninput="calculateSumsTotal()" aria-label="Сума"></td>
+                            <td class="no-print"><button onclick="removeSumRow(this)" class="btn-remove">✕</button></td>
+                        </tr>
+                        <tr class="sum-row">
+                            <td class="row-number">5</td>
+                            <td><input type="text" class="sum-name" value="РУВД киоск справа от кумца" aria-label="Назва"></td>
+                            <td><input type="number" class="sum-amount" value="0" step="0.01" min="0" oninput="calculateSumsTotal()" aria-label="Сума"></td>
+                            <td class="no-print"><button onclick="removeSumRow(this)" class="btn-remove">✕</button></td>
+                        </tr>
+                        <tr class="sum-row">
+                            <td class="row-number">6</td>
+                            <td><input type="text" class="sum-name" value="Искра" aria-label="Назва"></td>
+                            <td><input type="number" class="sum-amount" value="0" step="0.01" min="0" oninput="calculateSumsTotal()" aria-label="Сума"></td>
+                            <td class="no-print"><button onclick="removeSumRow(this)" class="btn-remove">✕</button></td>
+                        </tr>
+                        <tr class="sum-row">
+                            <td class="row-number">7</td>
+                            <td><input type="text" class="sum-name" value="Лена - Мокрянка" aria-label="Назва"></td>
+                            <td><input type="number" class="sum-amount" value="0" step="0.01" min="0" oninput="calculateSumsTotal()" aria-label="Сума"></td>
+                            <td class="no-print"><button onclick="removeSumRow(this)" class="btn-remove">✕</button></td>
+                        </tr>
+                        <tr class="sum-row">
+                            <td class="row-number">8</td>
+                            <td><input type="text" class="sum-name" value="Мокрянское, 103" aria-label="Назва"></td>
+                            <td><input type="number" class="sum-amount" value="0" step="0.01" min="0" oninput="calculateSumsTotal()" aria-label="Сума"></td>
+                            <td class="no-print"><button onclick="removeSumRow(this)" class="btn-remove">✕</button></td>
+                        </tr>
+                        <tr class="sum-row">
+                            <td class="row-number">9</td>
+                            <td><input type="text" class="sum-name" value="Базовая" aria-label="Назва"></td>
+                            <td><input type="number" class="sum-amount" value="0" step="0.01" min="0" oninput="calculateSumsTotal()" aria-label="Сума"></td>
+                            <td class="no-print"><button onclick="removeSumRow(this)" class="btn-remove">✕</button></td>
+                        </tr>
+                        <tr class="sum-row">
+                            <td class="row-number">10</td>
+                            <td><input type="text" class="sum-name" value="Танзиля" aria-label="Назва"></td>
+                            <td><input type="number" class="sum-amount" value="0" step="0.01" min="0" oninput="calculateSumsTotal()" aria-label="Сума"></td>
+                            <td class="no-print"><button onclick="removeSumRow(this)" class="btn-remove">✕</button></td>
+                        </tr>
+                        <tr class="sum-row">
+                            <td class="row-number">11</td>
+                            <td><input type="text" class="sum-name" value="Победа, 115" aria-label="Назва"></td>
+                            <td><input type="number" class="sum-amount" value="0" step="0.01" min="0" oninput="calculateSumsTotal()" aria-label="Сума"></td>
+                            <td class="no-print"><button onclick="removeSumRow(this)" class="btn-remove">✕</button></td>
+                        </tr>
+                        <tr class="sum-row">
+                            <td class="row-number">12</td>
+                            <td><input type="text" class="sum-name" value="Победа, 91" aria-label="Назва"></td>
+                            <td><input type="number" class="sum-amount" value="0" step="0.01" min="0" oninput="calculateSumsTotal()" aria-label="Сума"></td>
+                            <td class="no-print"><button onclick="removeSumRow(this)" class="btn-remove">✕</button></td>
+                        </tr>
+                        <tr class="sum-row">
+                            <td class="row-number">13</td>
+                            <td><input type="text" class="sum-name" value="Нез. Укр" aria-label="Назва"></td>
+                            <td><input type="number" class="sum-amount" value="0" step="0.01" min="0" oninput="calculateSumsTotal()" aria-label="Сума"></td>
+                            <td class="no-print"><button onclick="removeSumRow(this)" class="btn-remove">✕</button></td>
+                        </tr>
+                        <tr class="sum-row">
+                            <td class="row-number">14</td>
+                            <td><input type="text" class="sum-name" value="Юля" aria-label="Назва"></td>
+                            <td><input type="number" class="sum-amount" value="0" step="0.01" min="0" oninput="calculateSumsTotal()" aria-label="Сума"></td>
+                            <td class="no-print"><button onclick="removeSumRow(this)" class="btn-remove">✕</button></td>
+                        </tr>
+                        <tr class="sum-row">
+                            <td class="row-number">15</td>
+                            <td><input type="text" class="sum-name" value="Трегубенко, 22" aria-label="Назва"></td>
+                            <td><input type="number" class="sum-amount" value="0" step="0.01" min="0" oninput="calculateSumsTotal()" aria-label="Сума"></td>
+                            <td class="no-print"><button onclick="removeSumRow(this)" class="btn-remove">✕</button></td>
+                        </tr>
+                        <tr class="sum-row">
+                            <td class="row-number">16</td>
+                            <td><input type="text" class="sum-name" value="Кичкас Наташа" aria-label="Назва"></td>
+                            <td><input type="number" class="sum-amount" value="0" step="0.01" min="0" oninput="calculateSumsTotal()" aria-label="Сума"></td>
+                            <td class="no-print"><button onclick="removeSumRow(this)" class="btn-remove">✕</button></td>
+                        </tr>
+                        <tr class="sum-row">
+                            <td class="row-number">17</td>
+                            <td><input type="text" class="sum-name" value="Невского, 101" aria-label="Назва"></td>
+                            <td><input type="number" class="sum-amount" value="0" step="0.01" min="0" oninput="calculateSumsTotal()" aria-label="Сума"></td>
+                            <td class="no-print"><button onclick="removeSumRow(this)" class="btn-remove">✕</button></td>
+                        </tr>
+                        <tr class="sum-row">
+                            <td class="row-number">18</td>
+                            <td><input type="text" class="sum-name" value="ул. Демокротич. 63а Света" aria-label="Назва"></td>
+                            <td><input type="number" class="sum-amount" value="0" step="0.01" min="0" oninput="calculateSumsTotal()" aria-label="Сума"></td>
+                            <td class="no-print"><button onclick="removeSumRow(this)" class="btn-remove">✕</button></td>
+                        </tr>
+                        <tr class="sum-row">
+                            <td class="row-number">19</td>
+                            <td><input type="text" class="sum-name" value="Автобусная, 7" aria-label="Назва"></td>
+                            <td><input type="number" class="sum-amount" value="0" step="0.01" min="0" oninput="calculateSumsTotal()" aria-label="Сума"></td>
+                            <td class="no-print"><button onclick="removeSumRow(this)" class="btn-remove">✕</button></td>
+                        </tr>
+                        <tr class="sum-row">
+                            <td class="row-number">20</td>
+                            <td><input type="text" class="sum-name" value="Анжела" aria-label="Назва"></td>
+                            <td><input type="number" class="sum-amount" value="0" step="0.01" min="0" oninput="calculateSumsTotal()" aria-label="Сума"></td>
+                            <td class="no-print"><button onclick="removeSumRow(this)" class="btn-remove">✕</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="footer">
+                    <div class="totals">
+                        <div class="total-row">
+                            <span>Всього:</span>
+                            <span id="sumsTotal">0.00</span>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -166,14 +166,21 @@ function downloadPDF() {
 
 // Инициализация при загрузке страницы
 document.addEventListener('DOMContentLoaded', function() {
-    // Устанавливаем текущую дату
+    // Устанавливаем текущую дату для накладной
     const now = new Date();
     document.getElementById('invoiceDay').value = now.getDate();
     document.getElementById('invoiceMonth').value = getMonthName(now.getMonth());
     document.getElementById('invoiceYear').value = now.getFullYear().toString().substr(-2);
     
+    // Устанавливаем текущую дату для таблицы сумм
+    const day = String(now.getDate()).padStart(2, '0');
+    const month = String(now.getMonth() + 1).padStart(2, '0');
+    const year = now.getFullYear().toString().substr(-2);
+    document.getElementById('sumsDate').value = `${day}.${month}.${year}`;
+    
     // Начальный расчет
     calculateTotals();
+    calculateSumsTotal();
 });
 
 // Получение названия месяца на украинском
@@ -183,4 +190,105 @@ function getMonthName(month) {
         'липня', 'серпня', 'вересня', 'жовтня', 'листопада', 'грудня'
     ];
     return months[month];
+}
+
+// Переключение вкладок
+function showTab(tabName) {
+    const invoiceTab = document.getElementById('invoiceTab');
+    const sumsTab = document.getElementById('sumsTab');
+    const tabInvoice = document.getElementById('tabInvoice');
+    const tabSums = document.getElementById('tabSums');
+
+    if (tabName === 'invoice') {
+        invoiceTab.classList.remove('hidden');
+        sumsTab.classList.add('hidden');
+        tabInvoice.classList.add('active');
+        tabSums.classList.remove('active');
+    } else {
+        invoiceTab.classList.add('hidden');
+        sumsTab.classList.remove('hidden');
+        tabInvoice.classList.remove('active');
+        tabSums.classList.add('active');
+    }
+}
+
+// Добавление новой строки в таблицу сумм
+function addSumRow() {
+    const tbody = document.getElementById('sumsRows');
+    const rowCount = tbody.querySelectorAll('.sum-row').length + 1;
+    
+    const newRow = document.createElement('tr');
+    newRow.className = 'sum-row';
+    newRow.innerHTML = `
+        <td class="row-number">${rowCount}</td>
+        <td><input type="text" class="sum-name" placeholder="Введіть назву" aria-label="Назва"></td>
+        <td><input type="number" class="sum-amount" value="0" step="0.01" min="0" oninput="calculateSumsTotal()" aria-label="Сума"></td>
+        <td class="no-print"><button onclick="removeSumRow(this)" class="btn-remove">✕</button></td>
+    `;
+    
+    tbody.appendChild(newRow);
+}
+
+// Удаление строки из таблицы сумм
+function removeSumRow(button) {
+    const row = button.closest('tr');
+    row.remove();
+    updateSumRowNumbers();
+    calculateSumsTotal();
+}
+
+// Обновление нумерации строк в таблице сумм
+function updateSumRowNumbers() {
+    const rows = document.querySelectorAll('.sum-row');
+    rows.forEach((row, index) => {
+        row.querySelector('.row-number').textContent = index + 1;
+    });
+}
+
+// Расчет общей суммы
+function calculateSumsTotal() {
+    const rows = document.querySelectorAll('.sum-row');
+    let total = 0;
+    
+    rows.forEach(row => {
+        const amount = parseFloat(row.querySelector('.sum-amount').value) || 0;
+        total += amount;
+    });
+    
+    document.getElementById('sumsTotal').textContent = total.toFixed(2);
+}
+
+// Скачивание PDF для таблицы сумм
+function downloadSumsPDF() {
+    const element = document.getElementById('sumsTable');
+    
+    const opt = {
+        margin: [8, 8, 8, 8],
+        filename: `Сумми.pdf`,
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { 
+            scale: 3, 
+            useCORS: true,
+            letterRendering: true,
+            scrollY: 0,
+            scrollX: 0
+        },
+        jsPDF: { 
+            unit: 'mm', 
+            format: 'a4', 
+            orientation: 'portrait',
+            compress: false
+        },
+        pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
+    };
+    
+    const controls = document.querySelectorAll('.no-print');
+    controls.forEach(el => el.style.display = 'none');
+    
+    document.body.classList.add('pdf-export');
+    
+    html2pdf().set(opt).from(element).save().then(() => {
+        controls.forEach(el => el.style.display = '');
+        document.body.classList.remove('pdf-export');
+    });
 }
